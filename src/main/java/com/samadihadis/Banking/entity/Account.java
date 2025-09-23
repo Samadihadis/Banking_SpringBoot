@@ -11,21 +11,40 @@ public class Account {
     private Long id;
 
     @Column(unique = true)
-    String accountNumber;
+    private String accountNumber;
 
     @Column(unique = true)
-    String shebaNumber;
+    private String shebaNumber;
 
-    Status status;
-    Double balance;
+    private Status status;
+    private Double balance;
+
+    @ManyToOne
+    @JoinColumn(name = "customer_id")
+    private Customer customer;
+
+    @ManyToOne
+    @JoinColumn(name = "bank_id")
+    private Bank bank;
 
     public Account() {}
 
-    public Account(String accountNumber, String shebaNumber, Status status, Double balance) {
+    public Account(String accountNumber, String shebaNumber, Status status, Double balance,
+                   Customer customer, Bank bank) {
         this.accountNumber = accountNumber;
         this.shebaNumber = shebaNumber;
         this.status = status;
         this.balance = balance;
+        this.customer = customer;
+        this.bank = bank;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getAccountNumber() {
@@ -58,5 +77,21 @@ public class Account {
 
     public void setBalance(Double balance) {
         this.balance = balance;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    public Bank getBank() {
+        return bank;
+    }
+
+    public void setBank(Bank bank) {
+        this.bank = bank;
     }
 }
