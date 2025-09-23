@@ -7,7 +7,7 @@ public class Bank {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    Long bankId;
 
     @Column(unique = true)
     String bankName;
@@ -22,12 +22,12 @@ public class Bank {
         this.branch = branch;
     }
 
-    public Long getId() {
-        return id;
+    public Long getBankId() {
+        return bankId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setBankId(Long bankId) {
+        this.bankId = bankId;
     }
 
     public String getBankName() {

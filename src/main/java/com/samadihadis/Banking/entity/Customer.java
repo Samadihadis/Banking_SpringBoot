@@ -7,7 +7,7 @@ public class Customer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    Long customerId;
 
     String customerFullName;
 
@@ -26,12 +26,12 @@ public class Customer {
         this.customerCode = customerCode;
     }
 
-    public Long getId() {
-        return id;
+    public Long getCustomerId() {
+        return customerId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setCustomerId(Long customerId) {
+        this.customerId = customerId;
     }
 
     public String getCustomerFullName() {

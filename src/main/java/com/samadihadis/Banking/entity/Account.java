@@ -8,7 +8,7 @@ public class Account {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long accountId;
 
     @Column(unique = true)
     private String accountNumber;
@@ -39,12 +39,12 @@ public class Account {
         this.bank = bank;
     }
 
-    public Long getId() {
-        return id;
+    public Long getAccountId() {
+        return accountId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setAccountId(Long accountId) {
+        this.accountId = accountId;
     }
 
     public String getAccountNumber() {
