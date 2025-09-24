@@ -1,9 +1,7 @@
 package com.samadihadis.Banking.entity;
 
-import com.samadihadis.Banking.enums.Status;
+import com.samadihadis.Banking.enums.AccountStatus;
 import jakarta.persistence.*;
-
-import javax.xml.crypto.Data;
 import java.time.LocalDate;
 
 @Entity
@@ -14,11 +12,11 @@ public class CreditCard {
     private Long creditCardId;
 
     @Column(unique = true)
-    private Long cardNumber;
+    private String cardNumber;
 
     private LocalDate expirationDate;
     private String cvv2;
-    private Status status;
+    private AccountStatus status;
 
 
     @OneToOne
@@ -27,7 +25,7 @@ public class CreditCard {
 
     public CreditCard() {}
 
-    public CreditCard(Status status, Long cardNumber, LocalDate expirationDate, String cvv2, Account account) {
+    public CreditCard(AccountStatus status, String cardNumber, LocalDate expirationDate, String cvv2, Account account) {
         this.status = status;
         this.cardNumber = cardNumber;
         this.expirationDate = expirationDate;
@@ -43,11 +41,11 @@ public class CreditCard {
         this.creditCardId = creditCardId;
     }
 
-    public Long getCardNumber() {
+    public String getCardNumber() {
         return cardNumber;
     }
 
-    public void setCardNumber(Long cardNumber) {
+    public void setCardNumber(String cardNumber) {
         this.cardNumber = cardNumber;
     }
 
@@ -67,11 +65,11 @@ public class CreditCard {
         this.cvv2 = cvv2;
     }
 
-    public Status getStatus() {
+    public AccountStatus getStatus() {
         return status;
     }
 
-    public void setStatus(Status status) {
+    public void setStatus(AccountStatus status) {
         this.status = status;
     }
 

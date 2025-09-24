@@ -1,6 +1,6 @@
 package com.samadihadis.Banking.enums;
 
-public enum Status {
+public enum AccountStatus {
     OPEN,
     CLOSE
 }

@@ -1,6 +1,6 @@
 package com.samadihadis.Banking.entity;
 
-import com.samadihadis.Banking.enums.Status;
+import com.samadihadis.Banking.enums.AccountStatus;
 import jakarta.persistence.*;
 
 @Entity
@@ -16,7 +16,8 @@ public class Account {
     @Column(unique = true)
     private String shebaNumber;
 
-    private Status status;
+    @Enumerated(EnumType.STRING)
+    private AccountStatus status;
     private Double balance;
 
     @ManyToOne
@@ -29,7 +30,7 @@ public class Account {
 
     public Account() {}
 
-    public Account(String accountNumber, String shebaNumber, Status status, Double balance,
+    public Account(String accountNumber, String shebaNumber, AccountStatus status, Double balance,
                    Customer customer, Bank bank) {
         this.accountNumber = accountNumber;
         this.shebaNumber = shebaNumber;
@@ -63,11 +64,11 @@ public class Account {
         this.shebaNumber = shebaNumber;
     }
 
-    public Status getStatus() {
+    public AccountStatus getStatus() {
         return status;
     }
 
-    public void setStatus(Status status) {
+    public void setStatus(AccountStatus status) {
         this.status = status;
     }
 
