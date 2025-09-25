@@ -7,8 +7,10 @@ import com.samadihadis.Banking.dto.TransferRequest;
 import com.samadihadis.Banking.dto.WithdrawRequest;
 import com.samadihadis.Banking.entity.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 @RestController
 @RequestMapping("/api/transaction")
@@ -16,7 +18,6 @@ public class TransactionController {
 
     @Autowired
     private TransactionService transactionService;
-
 
     @PostMapping("/transfer")
     public ResponseEntity<Transaction> transfer(@RequestBody TransferRequest request) {

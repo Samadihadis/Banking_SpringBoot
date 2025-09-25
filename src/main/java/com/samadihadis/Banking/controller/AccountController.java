@@ -6,6 +6,7 @@ import com.samadihadis.Banking.dto.AccountRequest;
 import com.samadihadis.Banking.dto.BalanceUpdateRequest;
 import com.samadihadis.Banking.dto.StatusUpdateRequest;
 import com.samadihadis.Banking.entity.Account;
+import com.samadihadis.Banking.enums.AccountStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/account")
+@RequestMapping("/api/accounts")
 public class AccountController {
 
     @Autowired
@@ -26,6 +27,7 @@ public class AccountController {
             account.setAccountNumber(accountRequest.getAccountNumber());
             account.setShebaNumber(accountRequest.getShebaNumber());
             account.setBalance(accountRequest.getBalance());
+            account.setStatus(accountRequest.getStatus() != null ? accountRequest.getStatus() : AccountStatus.OPEN);
 
             Account createdAccount = accountService.createAccount(account, accountRequest.getCustomerId(), accountRequest.getBankId());
             return ResponseEntity.ok(createdAccount);
