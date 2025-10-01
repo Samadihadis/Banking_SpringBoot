@@ -22,8 +22,4 @@ public class Bank {
     public Bank() {
     }
 
-    public Bank(String bankName, String branch) {
-        this.bankName = bankName;
-        this.branch = branch;
-    }
 }

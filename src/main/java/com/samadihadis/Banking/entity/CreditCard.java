@@ -1,6 +1,6 @@
 package com.samadihadis.Banking.entity;
 
-import com.samadihadis.Banking.enums.AccountStatus;
+import com.samadihadis.Banking.services.account.types.AccountStatus;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -31,11 +31,4 @@ public class CreditCard {
     public CreditCard() {
     }
 
-    public CreditCard(AccountStatus status, String cardNumber, LocalDate expirationDate, String cvv2, Account account) {
-        this.status = status;
-        this.cardNumber = cardNumber;
-        this.expirationDate = expirationDate;
-        this.cvv2 = cvv2;
-        this.account = account;
-    }
 }

@@ -36,14 +36,4 @@ public class Transaction {
     public Transaction() {
     }
 
-    public Transaction(Account sourceAccount, Account destinationAccount,
-                       Double transactionAmount, LocalDate transactionDate, TransactionStatus transactionStatus, String transactionDescription) {
-        this.sourceAccount = sourceAccount;
-        this.destinationAccount = destinationAccount;
-        this.transactionAmount = transactionAmount;
-        this.transactionDate = transactionDate;
-        this.transactionStatus = transactionStatus;
-        this.transactionDescription = transactionDescription;
-    }
-
 }

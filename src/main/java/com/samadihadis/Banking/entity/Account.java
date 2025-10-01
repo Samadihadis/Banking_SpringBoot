@@ -1,6 +1,6 @@
 package com.samadihadis.Banking.entity;
 
-import com.samadihadis.Banking.enums.AccountStatus;
+import com.samadihadis.Banking.services.account.types.AccountStatus;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -32,4 +32,5 @@ public class Account {
     private Bank bank;
 
     public Account() {}
+
 }

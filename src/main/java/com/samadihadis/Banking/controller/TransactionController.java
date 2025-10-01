@@ -6,15 +6,16 @@ import com.samadihadis.Banking.dto.request.DepositRequest;
 import com.samadihadis.Banking.dto.request.TransferRequest;
 import com.samadihadis.Banking.dto.request.WithdrawRequest;
 import com.samadihadis.Banking.entity.Transaction;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/transaction")
+@RequiredArgsConstructor
 public class TransactionController {
 
-    @Autowired
     private TransactionService transactionService;
 
     @PostMapping("/transfer")

@@ -1,6 +1,6 @@
 package com.samadihadis.Banking.dto.request;
 
-import com.samadihadis.Banking.enums.AccountStatus;
+import com.samadihadis.Banking.services.account.types.AccountStatus;
 
 public class StatusUpdateRequest {
     private AccountStatus accountStatus;

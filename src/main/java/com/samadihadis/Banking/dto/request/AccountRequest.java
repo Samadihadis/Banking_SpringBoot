@@ -1,6 +1,6 @@
 package com.samadihadis.Banking.dto.request;
 
-import com.samadihadis.Banking.enums.AccountStatus;
+import com.samadihadis.Banking.services.account.types.AccountStatus;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;

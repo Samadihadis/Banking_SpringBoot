@@ -2,24 +2,22 @@ package com.samadihadis.Banking.businessLogic;
 
 import com.samadihadis.Banking.entity.Account;
 import com.samadihadis.Banking.entity.Transaction;
-import com.samadihadis.Banking.enums.AccountStatus;
+import com.samadihadis.Banking.services.account.types.AccountStatus;
 import com.samadihadis.Banking.enums.TransactionStatus;
 import com.samadihadis.Banking.repository.AccountRepository;
 import com.samadihadis.Banking.repository.TransactionRepository;
 import jakarta.transaction.Transactional;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class TransactionService {
 
-    @Autowired
     private TransactionRepository transactionRepository;
-
-    @Autowired
     private AccountRepository accountRepository;
 
     public Transaction getTransactionById(Long id) {

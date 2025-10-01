@@ -3,6 +3,7 @@ package com.samadihadis.Banking.businessLogic;
 
 import com.samadihadis.Banking.entity.Customer;
 import com.samadihadis.Banking.repository.CustomerRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,9 +11,9 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class CustomerService {
 
-    @Autowired
     private CustomerRepository customerRepository;
 
     public Customer createCustomer(Customer customer){

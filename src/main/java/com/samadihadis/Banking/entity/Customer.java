@@ -24,10 +24,4 @@ public class Customer {
     public Customer() {
     }
 
-    public Customer(String fullName, String nationalId, String customerCode) {
-        this.customerFullName = fullName;
-        this.nationalId = nationalId;
-        this.customerCode = customerCode;
-    }
-
 }
