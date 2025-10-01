@@ -1,6 +1,6 @@
 package com.samadihadis.Banking.entity;
 
-import com.samadihadis.Banking.services.account.types.AccountStatus;
+import com.samadihadis.Banking.enums.AccountStatus;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;

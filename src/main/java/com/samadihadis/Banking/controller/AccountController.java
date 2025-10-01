@@ -1,12 +1,12 @@
 package com.samadihadis.Banking.controller;
 
-import com.samadihadis.Banking.services.account.service.AccountService;
+import com.samadihadis.Banking.businessLogic.AccountService;
 import com.samadihadis.Banking.dto.request.BalanceUpdateRequest;
 import com.samadihadis.Banking.dto.request.CreateAccountRequest;
 import com.samadihadis.Banking.dto.request.StatusUpdateRequest;
 import com.samadihadis.Banking.dto.response.CreateAccountResponse;
 import com.samadihadis.Banking.entity.Account;
-import com.samadihadis.Banking.services.account.types.AccountStatus;
+import com.samadihadis.Banking.enums.AccountStatus;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;

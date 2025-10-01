@@ -1,11 +1,11 @@
-package com.samadihadis.Banking.services.account.service;
+package com.samadihadis.Banking.businessLogic;
 
 
 import com.samadihadis.Banking.dto.response.CreateAccountResponse;
 import com.samadihadis.Banking.entity.Account;
 import com.samadihadis.Banking.entity.Bank;
 import com.samadihadis.Banking.entity.Customer;
-import com.samadihadis.Banking.services.account.types.AccountStatus;
+import com.samadihadis.Banking.enums.AccountStatus;
 import com.samadihadis.Banking.repository.AccountRepository;
 import com.samadihadis.Banking.repository.BankRepository;
 import com.samadihadis.Banking.repository.CustomerRepository;

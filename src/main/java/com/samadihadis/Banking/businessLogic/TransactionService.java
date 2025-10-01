@@ -2,7 +2,7 @@ package com.samadihadis.Banking.businessLogic;
 
 import com.samadihadis.Banking.entity.Account;
 import com.samadihadis.Banking.entity.Transaction;
-import com.samadihadis.Banking.services.account.types.AccountStatus;
+import com.samadihadis.Banking.enums.AccountStatus;
 import com.samadihadis.Banking.enums.TransactionStatus;
 import com.samadihadis.Banking.repository.AccountRepository;
 import com.samadihadis.Banking.repository.TransactionRepository;
