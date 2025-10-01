@@ -1,8 +1,12 @@
 package com.samadihadis.Banking.entity;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
+@Setter
+@Getter
 public class Bank {
 
     @Id
@@ -15,34 +19,11 @@ public class Bank {
     @Column(unique = true)
     String branch;
 
-    public Bank() {}
+    public Bank() {
+    }
 
     public Bank(String bankName, String branch) {
         this.bankName = bankName;
-        this.branch = branch;
-    }
-
-    public Long getBankId() {
-        return bankId;
-    }
-
-    public void setBankId(Long bankId) {
-        this.bankId = bankId;
-    }
-
-    public String getBankName() {
-        return bankName;
-    }
-
-    public void setBankName(String bankName) {
-        this.bankName = bankName;
-    }
-
-    public String getBranch() {
-        return branch;
-    }
-
-    public void setBranch(String branch) {
         this.branch = branch;
     }
 }

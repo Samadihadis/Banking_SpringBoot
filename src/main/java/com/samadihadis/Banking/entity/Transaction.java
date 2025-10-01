@@ -3,10 +3,14 @@ package com.samadihadis.Banking.entity;
 
 import com.samadihadis.Banking.enums.TransactionStatus;
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDate;
 
 @Entity
+@Setter
+@Getter
 public class Transaction {
 
     @Id
@@ -29,7 +33,8 @@ public class Transaction {
     private TransactionStatus transactionStatus;
     private String transactionDescription;
 
-    public Transaction() {}
+    public Transaction() {
+    }
 
     public Transaction(Account sourceAccount, Account destinationAccount,
                        Double transactionAmount, LocalDate transactionDate, TransactionStatus transactionStatus, String transactionDescription) {
@@ -41,60 +46,4 @@ public class Transaction {
         this.transactionDescription = transactionDescription;
     }
 
-    public Account getSourceAccount() {
-        return sourceAccount;
-    }
-
-    public void setSourceAccount(Account sourceAccount) {
-        this.sourceAccount = sourceAccount;
-    }
-
-    public Account getDestinationAccount() {
-        return destinationAccount;
-    }
-
-    public void setDestinationAccount(Account destinationAccount) {
-        this.destinationAccount = destinationAccount;
-    }
-
-    public Long getTransactionId() {
-        return transactionId;
-    }
-
-    public void setTransactionId(Long transactionId) {
-        this.transactionId = transactionId;
-    }
-
-
-    public Double getTransactionAmount() {
-        return transactionAmount;
-    }
-
-    public void setTransactionAmount(Double transactionAmount) {
-        this.transactionAmount = transactionAmount;
-    }
-
-    public LocalDate getTransactionDate() {
-        return transactionDate;
-    }
-
-    public void setTransactionDate(LocalDate transactionDate) {
-        this.transactionDate = transactionDate;
-    }
-
-    public TransactionStatus getTransactionStatus() {
-        return transactionStatus;
-    }
-
-    public void setTransactionStatus(TransactionStatus transactionStatus) {
-        this.transactionStatus = transactionStatus;
-    }
-
-    public String getTransactionDescription() {
-        return transactionDescription;
-    }
-
-    public void setTransactionDescription(String transactionDescription) {
-        this.transactionDescription = transactionDescription;
-    }
 }

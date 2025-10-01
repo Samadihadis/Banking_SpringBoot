@@ -1,6 +1,7 @@
 package com.samadihadis.Banking.businessLogic;
 
 
+import com.samadihadis.Banking.dto.response.CreateAccountResponse;
 import com.samadihadis.Banking.entity.Account;
 import com.samadihadis.Banking.entity.Bank;
 import com.samadihadis.Banking.entity.Customer;
@@ -8,7 +9,7 @@ import com.samadihadis.Banking.enums.AccountStatus;
 import com.samadihadis.Banking.repository.AccountRepository;
 import com.samadihadis.Banking.repository.BankRepository;
 import com.samadihadis.Banking.repository.CustomerRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 
@@ -16,19 +17,16 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class AccountService {
 
-    @Autowired
+
     private AccountRepository accountRepository;
-
-    @Autowired
     private CustomerRepository customerRepository;
-
-    @Autowired
     private BankRepository bankRepository;
 
 
-    public Account createAccount(Account account, Long customerId, Long bankId) {
+    public CreateAccountResponse createAccount(Account account, Long customerId, Long bankId) {
         Customer customer = customerRepository.findById(customerId)
                 .orElseThrow(() -> new RuntimeException("Customer not found"));
         Bank bank = bankRepository.findById(bankId)
@@ -36,11 +34,23 @@ public class AccountService {
 
         account.setCustomer(customer);
         account.setBank(bank);
+        accountRepository.save(account);
 
-        return accountRepository.save(account);
+
+        return CreateAccountResponse.builder()
+                .balance(account.getBalance())
+                .shebaNumber(account.getShebaNumber())
+                .accountId(account.getAccountId())
+                .status(account.getStatus())
+                .build();
     }
 
     public Account getAccountById(Long id) {
+        Optional<Account> account = accountRepository.findById(id);
+        return account.orElse(null);
+    }
+
+    public Account getAccountByIdWithNotFoundDetection(Long id) {
         Optional<Account> account = accountRepository.findById(id);
         return account.orElse(null);
     }
@@ -74,6 +84,10 @@ public class AccountService {
 
     public List<Account> getAllAccounts() {
         return accountRepository.findAll();
+    }
+
+    public void deleteAccount(Long id) {
+        accountRepository.deleteById(id);
     }
 }
 

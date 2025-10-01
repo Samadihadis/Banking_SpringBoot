@@ -6,6 +6,7 @@ import com.samadihadis.Banking.enums.AccountStatus;
 import com.samadihadis.Banking.enums.TransactionStatus;
 import com.samadihadis.Banking.repository.AccountRepository;
 import com.samadihadis.Banking.repository.TransactionRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,6 +27,7 @@ public class TransactionService {
         return transaction.orElse(null);
     }
 
+    @Transactional
     public Transaction transfer(Long sourceAccountId, Long destinationAccountId, Double amount, String description) {
 
         Account sourceAccount = accountRepository.findById(sourceAccountId)
@@ -137,6 +139,10 @@ public class TransactionService {
             return transactionRepository.save(transaction);
         }
         throw new RuntimeException("Account not found");
+    }
+
+    public void deleteTransaction(Long id) {
+        transactionRepository.deleteById(id);
     }
 
 }

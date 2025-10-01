@@ -1,4 +1,4 @@
-package com.samadihadis.Banking.dto;
+package com.samadihadis.Banking.dto.request;
 
 import com.samadihadis.Banking.enums.AccountStatus;
 
