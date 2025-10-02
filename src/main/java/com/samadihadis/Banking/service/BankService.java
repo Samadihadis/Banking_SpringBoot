@@ -1,9 +1,8 @@
-package com.samadihadis.Banking.businessLogic;
+package com.samadihadis.Banking.service;
 
 import com.samadihadis.Banking.entity.Bank;
 import com.samadihadis.Banking.repository.BankRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,7 +12,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class BankService {
 
-    private BankRepository bankRepository;
+    private final BankRepository bankRepository;
 
     public Bank createBank(Bank bank) {
         return bankRepository.save(bank);

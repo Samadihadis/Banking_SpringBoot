@@ -1,4 +1,4 @@
-package com.samadihadis.Banking.businessLogic;
+package com.samadihadis.Banking.service;
 
 
 import com.samadihadis.Banking.dto.request.AuthenticationResponse;
@@ -37,7 +37,7 @@ public class AuthenticationService {
         UserDetails newUser = new User(
                 registerRequest.getUsername(),
                 hashedPassword,
-                Arrays.asList(new SimpleGrantedAuthority("ROLE_USER"))
+                List.of(new SimpleGrantedAuthority("ROLE_USER"))
         );
 
         users.add(newUser);

@@ -1,10 +1,9 @@
 package com.samadihadis.Banking.controller;
 
-import com.samadihadis.Banking.businessLogic.AuthenticationService;
+import com.samadihadis.Banking.service.AuthenticationService;
 import com.samadihadis.Banking.dto.request.AuthenticationResponse;
 import com.samadihadis.Banking.dto.request.LoginRequest;
 import com.samadihadis.Banking.dto.request.RegisterRequest;
-import com.samadihadis.Banking.entity.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;

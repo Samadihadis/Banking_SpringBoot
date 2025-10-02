@@ -1,6 +1,6 @@
 package com.samadihadis.Banking.controller;
 
-import com.samadihadis.Banking.businessLogic.AccountService;
+import com.samadihadis.Banking.service.AccountService;
 import com.samadihadis.Banking.dto.request.BalanceUpdateRequest;
 import com.samadihadis.Banking.dto.request.CreateAccountRequest;
 import com.samadihadis.Banking.dto.request.StatusUpdateRequest;
@@ -76,6 +76,6 @@ public class AccountController {
 
     @GetMapping
     public ResponseEntity<List<Account>> getAllAccounts() {
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok(accountService.getAllAccounts());
     }
 }

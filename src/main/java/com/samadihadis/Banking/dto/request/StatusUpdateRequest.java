@@ -6,5 +6,5 @@ public class StatusUpdateRequest {
     private AccountStatus accountStatus;
 
     public AccountStatus getNewStatus() { return accountStatus; }
-    public void setNewStatus(AccountStatus newStatus) { this.accountStatus = accountStatus; }
+    public void setNewStatus(AccountStatus accountStatus) { this.accountStatus = accountStatus; }
 }

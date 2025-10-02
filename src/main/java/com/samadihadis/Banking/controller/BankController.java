@@ -1,9 +1,8 @@
 package com.samadihadis.Banking.controller;
 
-import com.samadihadis.Banking.businessLogic.BankService;
+import com.samadihadis.Banking.service.BankService;
 import com.samadihadis.Banking.entity.Bank;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

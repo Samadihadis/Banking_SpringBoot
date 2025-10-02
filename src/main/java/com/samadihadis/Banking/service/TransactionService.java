@@ -1,4 +1,4 @@
-package com.samadihadis.Banking.businessLogic;
+package com.samadihadis.Banking.service;
 
 import com.samadihadis.Banking.entity.Account;
 import com.samadihadis.Banking.entity.Transaction;
@@ -17,8 +17,8 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class TransactionService {
 
-    private TransactionRepository transactionRepository;
-    private AccountRepository accountRepository;
+    private final TransactionRepository transactionRepository;
+    private final AccountRepository accountRepository;
 
     public Transaction getTransactionById(Long id) {
         Optional<Transaction> transaction = transactionRepository.findById(id);

@@ -1,4 +1,4 @@
-package com.samadihadis.Banking.businessLogic;
+package com.samadihadis.Banking.service;
 
 
 import com.samadihadis.Banking.dto.response.CreateAccountResponse;
@@ -9,6 +9,7 @@ import com.samadihadis.Banking.enums.AccountStatus;
 import com.samadihadis.Banking.repository.AccountRepository;
 import com.samadihadis.Banking.repository.BankRepository;
 import com.samadihadis.Banking.repository.CustomerRepository;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -21,9 +22,9 @@ import java.util.Optional;
 public class AccountService {
 
 
-    private AccountRepository accountRepository;
-    private CustomerRepository customerRepository;
-    private BankRepository bankRepository;
+    private final AccountRepository accountRepository;
+    private final CustomerRepository customerRepository;
+    private final BankRepository bankRepository;
 
 
     public CreateAccountResponse createAccount(Account account, Long customerId, Long bankId) {
@@ -60,6 +61,7 @@ public class AccountService {
         return account.orElse(null);
     }
 
+    @Transactional
     public Account updateBalance(Long accountId, Double newBalance) {
         Account account = getAccountById(accountId);
         if (account != null) {
@@ -73,6 +75,7 @@ public class AccountService {
         throw new RuntimeException("Account not found");
     }
 
+    @Transactional
     public Account updateAccountStatus(Long accountId, AccountStatus accountStatus) {
         Account account = getAccountById(accountId);
         if (account != null) {
