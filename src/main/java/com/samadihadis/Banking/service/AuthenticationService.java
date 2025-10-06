@@ -11,7 +11,7 @@ import io.jsonwebtoken.security.Keys;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.security.Key;
@@ -21,7 +21,7 @@ import java.util.*;
 @RequiredArgsConstructor
 public class AuthenticationService {
 
-    private final BCryptPasswordEncoder passwordEncoder;
+    private final PasswordEncoder passwordEncoder;
     private final Key jwtSecretKey = Keys.secretKeyFor(SignatureAlgorithm.HS256);
     private final long jwtExpirationMs = 86400000;
     private final List<UserDetails> users;
