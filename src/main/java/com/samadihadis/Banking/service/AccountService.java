@@ -35,16 +35,20 @@ public class AccountService {
 
         account.setCustomer(customer);
         account.setBank(bank);
-        accountRepository.save(account);
 
+        Account saved = accountRepository.save(account);
 
         return CreateAccountResponse.builder()
-                .balance(account.getBalance())
-                .shebaNumber(account.getShebaNumber())
-                .accountId(account.getAccountId())
-                .status(account.getStatus())
+                .accountId(saved.getAccountId())
+                .accountNumber(saved.getAccountNumber())
+                .shebaNumber(saved.getShebaNumber())
+                .status(saved.getStatus())
+                .balance(saved.getBalance())
+                .customerId(saved.getCustomer().getCustomerId())
+                .bankId(saved.getBank().getBankId())
                 .build();
     }
+
 
     public Account getAccountById(Long id) {
         Optional<Account> account = accountRepository.findById(id);

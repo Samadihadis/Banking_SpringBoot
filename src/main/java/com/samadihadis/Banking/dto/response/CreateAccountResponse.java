@@ -14,6 +14,6 @@ public class CreateAccountResponse {
     private String shebaNumber;
     private AccountStatus status;
     private Double balance;
-    private Customer customer;
-    private Bank bank;
+    private Long customerId;
+    private Long bankId;
 }

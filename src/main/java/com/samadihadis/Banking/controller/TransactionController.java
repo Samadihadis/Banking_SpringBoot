@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class TransactionController {
 
-    private TransactionService transactionService;
+    private final TransactionService transactionService;
 
     @PostMapping("/transfer")
     public ResponseEntity<Transaction> transfer(@RequestBody TransferRequest request) {

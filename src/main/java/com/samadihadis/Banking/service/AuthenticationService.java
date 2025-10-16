@@ -6,8 +6,6 @@ import com.samadihadis.Banking.dto.request.RegisterRequest;
 import com.samadihadis.Banking.entity.Username;
 import com.samadihadis.Banking.repository.UserRepository;
 import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
-import io.jsonwebtoken.security.Keys;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
