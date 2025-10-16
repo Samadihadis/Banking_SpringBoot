@@ -14,6 +14,7 @@ import org.springframework.web.filter.OncePerRequestFilter;
 import java.io.IOException;
 import java.security.Key;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
@@ -46,24 +47,42 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                     .getBody();
 
             String username = claims.getSubject();
+            if (username == null || username.isBlank()) {
+                filterChain.doFilter(request, response);
+                return;
+            }
 
-            @SuppressWarnings("unchecked")
-            List<String> roles = claims.get("roles", List.class);
+            Object rolesObj = claims.get("roles");
+            List<SimpleGrantedAuthority> authorities = List.of();
 
-            List<SimpleGrantedAuthority> authorities = roles.stream()
-                    .map(SimpleGrantedAuthority::new)
-                    .collect(Collectors.toList());
+            if (rolesObj instanceof List<?> list) {
+                if (!list.isEmpty() && list.get(0) instanceof String) {
+                    authorities = list.stream()
+                            .map(r -> new SimpleGrantedAuthority((String) r))
+                            .collect(Collectors.toList());
+                } else {
+                    authorities = list.stream()
+                            .map(it -> {
+                                if (it instanceof Map<?, ?> m) {
+                                    Object a = m.get("authority");
+                                    return (a == null) ? null : new SimpleGrantedAuthority(a.toString());
+                                }
+                                return null;
+                            })
+                            .filter(x -> x != null && !x.getAuthority().isBlank())
+                            .collect(Collectors.toList());
+                }
+            }
 
             UsernamePasswordAuthenticationToken authentication =
                     new UsernamePasswordAuthenticationToken(username, null, authorities);
-
             SecurityContextHolder.getContext().setAuthentication(authentication);
 
         } catch (Exception e) {
             SecurityContextHolder.clearContext();
+            System.out.println("JWT ERROR: " + e.getMessage());
         }
 
         filterChain.doFilter(request, response);
     }
-
 }

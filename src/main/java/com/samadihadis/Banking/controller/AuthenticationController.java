@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/authentications")
+@RequestMapping("/api/auth")
 @RequiredArgsConstructor
 public class AuthenticationController {
 
@@ -34,10 +34,12 @@ public class AuthenticationController {
     @PostMapping("/login")
     public ResponseEntity<AuthenticationResponse> login(@RequestBody @Validated LoginRequest loginRequest) {
         try {
-            var registerResponse = authenticationService.login(loginRequest);
-            return ResponseEntity.ok(registerResponse);
-
+            System.out.println("Login attempt for: " + loginRequest.getUsername());
+            var loginResponse = authenticationService.login(loginRequest);
+            return ResponseEntity.ok(loginResponse);
         } catch (RuntimeException e) {
+            System.out.println("LOGIN ERROR: " + e.getMessage());
+            e.printStackTrace();
             return ResponseEntity.badRequest().build();
         }
     }

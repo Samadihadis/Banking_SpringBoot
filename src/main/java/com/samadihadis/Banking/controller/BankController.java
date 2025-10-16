@@ -13,7 +13,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class BankController {
 
-    private BankService bankService;
+    private final BankService bankService;
 
     @PostMapping
     public ResponseEntity<Bank> createBank(@RequestBody Bank bank) {
