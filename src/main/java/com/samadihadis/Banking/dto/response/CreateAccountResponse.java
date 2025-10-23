@@ -1,7 +1,6 @@
 package com.samadihadis.Banking.dto.response;
 
-import com.samadihadis.Banking.entity.Bank;
-import com.samadihadis.Banking.entity.Customer;
+
 import com.samadihadis.Banking.enums.AccountStatus;
 import lombok.Builder;
 import lombok.Data;

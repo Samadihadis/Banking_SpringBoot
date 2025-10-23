@@ -1,12 +1,13 @@
 package com.samadihadis.Banking.entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Entity
 @Setter
 @Getter
+@Builder
+@AllArgsConstructor
 public class Bank {
 
     @Id

@@ -2,13 +2,15 @@ package com.samadihadis.Banking.entity;
 
 import com.samadihadis.Banking.enums.AccountStatus;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Entity
 @Getter
 @Setter
-@Table(name = "account", uniqueConstraints = @UniqueConstraint(columnNames = "accountNumber"))
+@Builder
+@RequiredArgsConstructor
+@AllArgsConstructor
+@Table(name = "account")
 public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -40,7 +42,5 @@ public class Account {
         if (status == null) status = AccountStatus.OPEN;
         if (balance == null) balance = 0d;
     }
-
-    public Account() {}
 
 }
