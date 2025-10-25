@@ -10,6 +10,7 @@ import com.samadihadis.Banking.repository.AccountRepository;
 import com.samadihadis.Banking.repository.BankRepository;
 import com.samadihadis.Banking.repository.CustomerRepository;
 import jakarta.transaction.Transactional;
+import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
