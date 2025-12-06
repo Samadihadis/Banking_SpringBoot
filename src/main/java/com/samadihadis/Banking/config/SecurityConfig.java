@@ -39,6 +39,7 @@ public class SecurityConfig {
                         .requestMatchers("/api/banks").hasAnyRole("USER", "ADMIN")
                         .requestMatchers("/api/customers/**").hasAnyRole("USER","ADMIN")
                         .requestMatchers("/api/accounts/**").hasAnyRole("USER","ADMIN")
+                        .requestMatchers("/api/transaction/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);

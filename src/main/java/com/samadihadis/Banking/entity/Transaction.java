@@ -29,7 +29,7 @@ public class Transaction {
 
     private LocalDate transactionDate;
 
-    @Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.ORDINAL)
     private TransactionStatus transactionStatus;
     private String transactionDescription;
 
