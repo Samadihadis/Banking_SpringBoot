@@ -9,7 +9,6 @@ import com.samadihadis.Banking.entity.Account;
 import com.samadihadis.Banking.enums.AccountStatus;
 import com.samadihadis.Banking.service.AccountService;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -89,7 +88,7 @@ class AccountControllerTests {
                 .accountNumber("1234567890")
                 .shebaNumber("IR66557755")
                 .balance(5000.0)
-                .status(AccountStatus.OPEN)
+                .accountStatus(AccountStatus.OPEN)
                 .build();
 
         when(accountService.getAccountById(eq(1L))).thenReturn(account);
@@ -116,7 +115,7 @@ class AccountControllerTests {
                 .accountNumber("1234567890")
                 .shebaNumber("IR66557755")
                 .balance(5000.0)
-                .status(AccountStatus.OPEN)
+                .accountStatus(AccountStatus.OPEN)
                 .build();
 
         when(accountService.getAccountByAccountNumber("1234567890")).thenReturn(account);
@@ -149,7 +148,7 @@ class AccountControllerTests {
                 .accountNumber("1234567890")
                 .shebaNumber("IR66557755")
                 .balance(newBalance)
-                .status(AccountStatus.OPEN)
+                .accountStatus(AccountStatus.OPEN)
                 .build();
 
         when(accountService.updateBalance(eq(accountId), eq(newBalance)))
@@ -197,7 +196,7 @@ class AccountControllerTests {
                 .accountNumber("1234567890")
                 .shebaNumber("IR66557755")
                 .balance(5000.0)
-                .status(AccountStatus.OPEN)
+                .accountStatus(AccountStatus.OPEN)
                 .build();
 
         Account account2 = Account.builder()
@@ -205,7 +204,7 @@ class AccountControllerTests {
                 .accountNumber("0987654321")
                 .shebaNumber("IR6655007755")
                 .balance(70000.0)
-                .status(AccountStatus.OPEN)
+                .accountStatus(AccountStatus.OPEN)
                 .build();
 
         List<Account> accounts = List.of(account1, account2);

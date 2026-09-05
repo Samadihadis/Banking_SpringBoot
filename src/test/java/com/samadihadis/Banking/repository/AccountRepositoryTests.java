@@ -31,7 +31,7 @@ public class AccountRepositoryTests {
                 .accountNumber("121212")
                 .shebaNumber("66557755")
                 .balance(2000000000.0)
-                .status(AccountStatus.OPEN).build();
+                .accountStatus(AccountStatus.OPEN).build();
 
 
         Account savedAccount = accountRepository.save(account);
@@ -48,13 +48,13 @@ public class AccountRepositoryTests {
                 .accountNumber("121212")
                 .shebaNumber("66557755")
                 .balance(2000000000.0)
-                .status(AccountStatus.OPEN).build();
+                .accountStatus(AccountStatus.OPEN).build();
 
         Account account2 = Account.builder()
                 .accountNumber("343434")
                 .shebaNumber("9900886767")
                 .balance(3000000000.0)
-                .status(AccountStatus.OPEN).build();
+                .accountStatus(AccountStatus.OPEN).build();
 
 
         accountRepository.save(account1);
@@ -74,7 +74,7 @@ public class AccountRepositoryTests {
                 .accountNumber("121212")
                 .shebaNumber("66557755")
                 .balance(2000000000.0)
-                .status(AccountStatus.OPEN).build();
+                .accountStatus(AccountStatus.OPEN).build();
 
         accountRepository.save(account1);
 
@@ -91,7 +91,7 @@ public class AccountRepositoryTests {
                 .accountNumber("121212")
                 .shebaNumber("66557755")
                 .balance(2000000000.0)
-                .status(AccountStatus.OPEN).build();
+                .accountStatus(AccountStatus.OPEN).build();
 
         accountRepository.save(account1);
 

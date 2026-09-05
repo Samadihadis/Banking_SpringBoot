@@ -27,7 +27,7 @@ public class AccountController {
             account.setAccountNumber(accountRequest.getAccountNumber());
             account.setShebaNumber(accountRequest.getShebaNumber());
             account.setBalance(accountRequest.getBalance());
-            account.setStatus(accountRequest.getStatus() != null ? accountRequest.getStatus() : AccountStatus.OPEN);
+            account.setAccountStatus(accountRequest.getStatus() != null ? accountRequest.getStatus() : AccountStatus.OPEN);
 
             var createAccountResponse = accountService.createAccount(account, accountRequest.getCustomerId(), accountRequest.getBankId());
             return ResponseEntity.ok(createAccountResponse);

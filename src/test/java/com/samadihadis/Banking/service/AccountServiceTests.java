@@ -47,7 +47,7 @@ public class AccountServiceTests {
                 .accountNumber("121212")
                 .shebaNumber("89898989")
                 .balance(20_000_000.0)
-                .status(AccountStatus.OPEN)
+                .accountStatus(AccountStatus.OPEN)
                 .build();
 
         Customer customer = new Customer();
@@ -61,7 +61,7 @@ public class AccountServiceTests {
                 .accountNumber("121212")
                 .shebaNumber("89898989")
                 .balance(20_000_000.0)
-                .status(AccountStatus.OPEN)
+                .accountStatus(AccountStatus.OPEN)
                 .customer(customer)
                 .bank(bank)
                 .build();
@@ -91,7 +91,7 @@ public class AccountServiceTests {
                 .accountNumber("121212")
                 .shebaNumber("89898989")
                 .balance(20_000_000.0)
-                .status(AccountStatus.OPEN)
+                .accountStatus(AccountStatus.OPEN)
                 .build();
 
         Customer customer = new Customer();
@@ -105,7 +105,7 @@ public class AccountServiceTests {
                 .accountNumber("121212")
                 .shebaNumber("89898989")
                 .balance(20_000_000.0)
-                .status(AccountStatus.OPEN)
+                .accountStatus(AccountStatus.OPEN)
                 .customer(customer)
                 .bank(bank)
                 .build();
@@ -129,7 +129,7 @@ public class AccountServiceTests {
                 .accountNumber("121212")
                 .shebaNumber("89898989")
                 .balance(20_000_000.0)
-                .status(AccountStatus.OPEN)
+                .accountStatus(AccountStatus.OPEN)
                 .build();
 
 
@@ -137,7 +137,7 @@ public class AccountServiceTests {
                 .accountId(10L)
                 .accountNumber("121212")
                 .balance(5000.0)
-                .status(AccountStatus.OPEN)
+                .accountStatus(AccountStatus.OPEN)
                 .build();
 
         when(accountRepository.findById(accountId)).thenReturn(Optional.of(account));
@@ -159,14 +159,14 @@ public class AccountServiceTests {
                 .accountNumber("121212")
                 .shebaNumber("89898989")
                 .balance(20_000_000.0)
-                .status(AccountStatus.OPEN)
+                .accountStatus(AccountStatus.OPEN)
                 .build();
 
 
         Account updatedStatus = Account.builder()
                 .accountId(10L)
                 .accountNumber("121212")
-                .status(AccountStatus.CLOSE)
+                .accountStatus(AccountStatus.CLOSE)
                 .build();
 
         when(accountRepository.findById(accountId)).thenReturn(Optional.of(account));
@@ -175,7 +175,7 @@ public class AccountServiceTests {
         Account result = accountService.updateAccountStatus(accountId, newStatus);
 
         Assertions.assertThat(result).isNotNull();
-        Assertions.assertThat(result.getStatus()).isEqualTo(newStatus);
+        Assertions.assertThat(result.getAccountStatus()).isEqualTo(newStatus);
 
     }
 
@@ -186,14 +186,14 @@ public class AccountServiceTests {
                 .accountNumber("121212")
                 .shebaNumber("89898989")
                 .balance(20_000_000.0)
-                .status(AccountStatus.OPEN)
+                .accountStatus(AccountStatus.OPEN)
                 .build();
 
         Account account2 = Account.builder()
                 .accountNumber("343434")
                 .shebaNumber("67676767")
                 .balance(70_000_000.0)
-                .status(AccountStatus.OPEN)
+                .accountStatus(AccountStatus.OPEN)
                 .build();
 
         List<Account> accountList = List.of(account1, account2);

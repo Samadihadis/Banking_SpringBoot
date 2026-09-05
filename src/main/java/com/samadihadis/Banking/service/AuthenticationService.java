@@ -3,7 +3,7 @@ package com.samadihadis.Banking.service;
 import com.samadihadis.Banking.dto.request.AuthenticationResponse;
 import com.samadihadis.Banking.dto.request.LoginRequest;
 import com.samadihadis.Banking.dto.request.RegisterRequest;
-import com.samadihadis.Banking.entity.Username;
+import com.samadihadis.Banking.entity.User;
 import com.samadihadis.Banking.repository.UserRepository;
 import io.jsonwebtoken.Jwts;
 import lombok.RequiredArgsConstructor;
@@ -30,12 +30,12 @@ public class AuthenticationService {
             throw new RuntimeException("Username already exists");
         }
 
-        Username user = new Username();
+        User user = new User();
         user.setUsername(request.getUsername());
         user.setPassword(passwordEncoder.encode(request.getPassword()));
         user.setRoles("ROLE_USER");
 
-        Username savedUser = userRepository.save(user);
+        User savedUser = userRepository.save(user);
 
         String token = generateToken(convertToUserDetails(savedUser));
 
@@ -43,7 +43,7 @@ public class AuthenticationService {
     }
 
     public AuthenticationResponse login(LoginRequest request) {
-        Username username = userRepository.findByUsername(request.getUsername())
+        User username = userRepository.findByUsername(request.getUsername())
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
         if (!passwordEncoder.matches(request.getPassword(), username.getPassword())) {
@@ -55,7 +55,7 @@ public class AuthenticationService {
         return new AuthenticationResponse(token, "Login successful");
     }
 
-    private UserDetails convertToUserDetails(Username user) {
+    private UserDetails convertToUserDetails(User user) {
         return new org.springframework.security.core.userdetails.User(
                 user.getUsername(),
                 user.getPassword(),

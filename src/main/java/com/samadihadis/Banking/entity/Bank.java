@@ -9,16 +9,17 @@ import lombok.*;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "bank")
 public class Bank {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long bankId;
+    private Long bankId;
 
     @Column(unique = true)
-    String bankName;
+    private String bankName;
 
     @Column(unique = true)
-    String branch;
+    private String branchCode;
 
 }

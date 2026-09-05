@@ -13,14 +13,14 @@ public class Customer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long customerId;
+    private Long customerId;
 
-    String customerFullName;
-
-    @Column(unique = true)
-    String nationalId;
+    private String customerFullName;
 
     @Column(unique = true)
-    String customerCode;
+    private String nationalId;
+
+    @Column(unique = true)
+    private String customerCode;
 
 }

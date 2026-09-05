@@ -4,11 +4,12 @@ import com.samadihadis.Banking.enums.AccountStatus;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.math.BigDecimal;
+
 @Entity
 @Getter
 @Setter
 @Builder
-@RequiredArgsConstructor
 @AllArgsConstructor
 @Table(name = "account")
 public class Account {
@@ -24,23 +25,17 @@ public class Account {
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private AccountStatus status = AccountStatus.OPEN;
+    private AccountStatus accountStatus = AccountStatus.OPEN;
 
-    private Double balance = 0d;
+    @Column(nullable = false, precision = 19, scale = 2)
+    private BigDecimal balance = BigDecimal.ZERO;
 
     @ManyToOne
-    @JoinColumn(name = "customer_id")
+    @JoinColumn(name = "customer_id", nullable = false)
     private Customer customer;
 
     @ManyToOne
     @JoinColumn(name = "bank_id")
     private Bank bank;
-
-
-    @PrePersist
-    void prePersist() {
-        if (status == null) status = AccountStatus.OPEN;
-        if (balance == null) balance = 0d;
-    }
 
 }

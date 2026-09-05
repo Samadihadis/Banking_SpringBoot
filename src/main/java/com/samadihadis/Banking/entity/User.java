@@ -1,5 +1,6 @@
 package com.samadihadis.Banking.entity;
 
+import com.samadihadis.Banking.enums.Role;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -10,7 +11,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Username {
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,8 +20,10 @@ public class Username {
     @Column(nullable = false, unique = true)
     private String username;
 
-    @Column(unique = true)
+    @Column(nullable = false)
     private String password;
-    private String roles = "ROLE_USER";
+
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
 }

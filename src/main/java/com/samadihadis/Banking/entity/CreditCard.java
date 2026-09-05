@@ -1,6 +1,6 @@
 package com.samadihadis.Banking.entity;
 
-import com.samadihadis.Banking.enums.AccountStatus;
+import com.samadihadis.Banking.enums.CardStatus;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -23,7 +23,9 @@ public class CreditCard {
 
     private LocalDate expirationDate;
     private String cvv2;
-    private AccountStatus status;
+
+    @Enumerated(EnumType.STRING)
+    private CardStatus cardStatus;
 
 
     @OneToOne

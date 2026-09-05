@@ -1,12 +1,12 @@
 package com.samadihadis.Banking.repository;
 
-import com.samadihadis.Banking.entity.Username;
+import com.samadihadis.Banking.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
 
-public interface UserRepository extends JpaRepository<Username, Long> {
+public interface UserRepository extends JpaRepository<User, Long> {
 
-    Optional<Username> findByUsername(String username);
+    Optional<User> findByUsername(String username);
     boolean existsByUsername(String username);
 }

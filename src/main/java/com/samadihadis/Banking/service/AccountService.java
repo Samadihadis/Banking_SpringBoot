@@ -14,6 +14,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -42,7 +43,7 @@ public class AccountService {
                 .accountId(saved.getAccountId())
                 .accountNumber(saved.getAccountNumber())
                 .shebaNumber(saved.getShebaNumber())
-                .status(saved.getStatus())
+                .status(saved.getAccountStatus())
                 .balance(saved.getBalance())
                 .customerId(saved.getCustomer().getCustomerId())
                 .bankId(saved.getBank().getBankId())
@@ -66,7 +67,7 @@ public class AccountService {
     }
 
     @Transactional
-    public Account updateBalance(Long accountId, Double newBalance) {
+    public Account updateBalance(Long accountId, BigDecimal newBalance) {
         Account account = getAccountById(accountId);
         if (account != null) {
             if (newBalance >= 0) {
@@ -83,7 +84,7 @@ public class AccountService {
     public Account updateAccountStatus(Long accountId, AccountStatus accountStatus) {
         Account account = getAccountById(accountId);
         if (account != null) {
-            account.setStatus(accountStatus);
+            account.setAccountStatus(accountStatus);
             return accountRepository.save(account);
         }
         throw new RuntimeException("Account not found");

@@ -5,7 +5,9 @@ import com.samadihadis.Banking.enums.TransactionStatus;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Setter
@@ -27,12 +29,14 @@ public class Transaction {
     @JoinColumn(name = "destination_account_id")
     private Account destinationAccount;
 
-    private Double transactionAmount;
+    private BigDecimal transactionAmount;
 
-    private LocalDate transactionDate;
+    private LocalDateTime transactionDate;
 
-    @Enumerated(EnumType.ORDINAL)
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private TransactionStatus transactionStatus;
+
     private String transactionDescription;
 
 }
