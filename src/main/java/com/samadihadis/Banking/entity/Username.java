@@ -1,13 +1,15 @@
 package com.samadihadis.Banking.entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 @Entity
 @Getter
 @Setter
 @Table(name = "users")
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class Username {
 
     @Id
@@ -21,13 +23,4 @@ public class Username {
     private String password;
     private String roles = "ROLE_USER";
 
-    public Username() {
-    }
-
-    public Username(Long id, String username, String password, String roles) {
-        this.id = id;
-        this.username = username;
-        this.password = password;
-        this.roles = roles;
-    }
 }

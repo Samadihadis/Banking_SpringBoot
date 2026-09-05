@@ -1,8 +1,6 @@
 package com.samadihadis.Banking.service;
 
 
-import com.samadihadis.Banking.dto.request.AccountRequest;
-import com.samadihadis.Banking.dto.request.CreateAccountRequest;
 import com.samadihadis.Banking.dto.response.CreateAccountResponse;
 import com.samadihadis.Banking.entity.Account;
 import com.samadihadis.Banking.entity.Bank;

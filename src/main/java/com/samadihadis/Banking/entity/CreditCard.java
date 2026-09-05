@@ -2,14 +2,16 @@ package com.samadihadis.Banking.entity;
 
 import com.samadihadis.Banking.enums.AccountStatus;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDate;
 
 @Entity
 @Setter
 @Getter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class CreditCard {
 
     @Id
@@ -27,8 +29,5 @@ public class CreditCard {
     @OneToOne
     @JoinColumn(name = "account_id")
     private Account account;
-
-    public CreditCard() {
-    }
 
 }

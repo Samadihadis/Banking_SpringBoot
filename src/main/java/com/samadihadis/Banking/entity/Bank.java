@@ -8,6 +8,7 @@ import lombok.*;
 @Getter
 @Builder
 @AllArgsConstructor
+@NoArgsConstructor
 public class Bank {
 
     @Id
@@ -19,8 +20,5 @@ public class Bank {
 
     @Column(unique = true)
     String branch;
-
-    public Bank() {
-    }
 
 }
