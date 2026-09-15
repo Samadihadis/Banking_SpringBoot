@@ -4,6 +4,7 @@ import com.samadihadis.Banking.dto.request.AuthenticationResponse;
 import com.samadihadis.Banking.dto.request.LoginRequest;
 import com.samadihadis.Banking.dto.request.RegisterRequest;
 import com.samadihadis.Banking.entity.User;
+import com.samadihadis.Banking.enums.Role;
 import com.samadihadis.Banking.repository.UserRepository;
 import io.jsonwebtoken.Jwts;
 import lombok.RequiredArgsConstructor;
@@ -33,7 +34,7 @@ public class AuthenticationService {
         User user = new User();
         user.setUsername(request.getUsername());
         user.setPassword(passwordEncoder.encode(request.getPassword()));
-        user.setRoles("ROLE_USER");
+        user.setRole(Role.ROLE_USER);
 
         User savedUser = userRepository.save(user);
 
@@ -43,14 +44,14 @@ public class AuthenticationService {
     }
 
     public AuthenticationResponse login(LoginRequest request) {
-        User username = userRepository.findByUsername(request.getUsername())
+        User user = userRepository.findByUsername(request.getUsername())
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
-        if (!passwordEncoder.matches(request.getPassword(), username.getPassword())) {
+        if (!passwordEncoder.matches(request.getPassword(), user.getPassword())) {
             throw new RuntimeException("Invalid password");
         }
 
-        String token = generateToken(convertToUserDetails(username));
+        String token = generateToken(convertToUserDetails(user));
 
         return new AuthenticationResponse(token, "Login successful");
     }
@@ -59,7 +60,7 @@ public class AuthenticationService {
         return new org.springframework.security.core.userdetails.User(
                 user.getUsername(),
                 user.getPassword(),
-                Collections.singletonList(new SimpleGrantedAuthority(user.getRoles()))
+                Collections.singletonList(new SimpleGrantedAuthority(user.getRole().name()))
         );
     }
 

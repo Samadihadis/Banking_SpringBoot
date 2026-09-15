@@ -7,6 +7,8 @@ import jakarta.validation.constraints.Size;
 import lombok.Builder;
 import lombok.Data;
 
+import java.math.BigDecimal;
+
 @Data
 @Builder
 public class CreateAccountRequest {
@@ -14,7 +16,7 @@ public class CreateAccountRequest {
     @Size(min = 10, message = "طول شماره حساب حداقل باید 10 رقم باشد")
     private String accountNumber;
     private String shebaNumber;
-    private Double balance;
+    private BigDecimal balance;
     private Long customerId;
     private Long bankId;
     private AccountStatus status;

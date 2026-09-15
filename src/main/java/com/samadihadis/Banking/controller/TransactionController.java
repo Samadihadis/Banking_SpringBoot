@@ -11,7 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/transaction")
+@RequestMapping("/api/transactions")
 @RequiredArgsConstructor
 public class TransactionController {
 
@@ -19,7 +19,6 @@ public class TransactionController {
 
     @PostMapping("/transfer")
     public ResponseEntity<Transaction> transfer(@RequestBody TransferRequest request) {
-        try {
             Transaction transaction = transactionService.transfer(
                     request.getSourceAccountId(),
                     request.getDestinationAccountId(),
@@ -27,49 +26,33 @@ public class TransactionController {
                     request.getDescription()
             );
             return ResponseEntity.ok(transaction);
-        } catch (RuntimeException e) {
-            return ResponseEntity.badRequest().build();
-        }
     }
 
     @PostMapping("/deposit")
     public ResponseEntity<Transaction> deposit(@RequestBody DepositRequest request) {
-        try {
             Transaction transaction = transactionService.deposit(
                     request.getAccountId(),
                     request.getAmount(),
                     request.getDescription()
             );
             return ResponseEntity.ok(transaction);
-        } catch (RuntimeException e) {
-            return ResponseEntity.badRequest().build();
-        }
     }
 
     @PostMapping("/withdraw")
     public ResponseEntity<Transaction> withdraw(@RequestBody WithdrawRequest request) {
-        try {
             Transaction transaction = transactionService.withdraw(
                     request.getAccountId(),
                     request.getAmount(),
                     request.getDescription()
             );
             return ResponseEntity.ok(transaction);
-        } catch (RuntimeException e) {
-            return ResponseEntity.badRequest().build();
-        }
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<Transaction> getTransaction(@PathVariable Long id) {
-        Transaction transaction = transactionService.getTransactionById(id);
-        if (transaction != null) {
-            return ResponseEntity.ok(transaction);
-        }
-        return ResponseEntity.notFound().build();
+        return ResponseEntity.ok(
+                transactionService.getTransactionById(id)
+        );
     }
 }
-
-
-
 

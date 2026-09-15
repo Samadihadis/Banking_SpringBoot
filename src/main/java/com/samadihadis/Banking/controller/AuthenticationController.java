@@ -4,9 +4,9 @@ import com.samadihadis.Banking.service.AuthenticationService;
 import com.samadihadis.Banking.dto.request.AuthenticationResponse;
 import com.samadihadis.Banking.dto.request.LoginRequest;
 import com.samadihadis.Banking.dto.request.RegisterRequest;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,27 +21,15 @@ public class AuthenticationController {
 
 
     @PostMapping("/register")
-    public ResponseEntity<AuthenticationResponse> register(@RequestBody @Validated RegisterRequest registerRequest) {
-        try {
-            var registerResponse = authenticationService.register(registerRequest);
+    public ResponseEntity<AuthenticationResponse> register(@RequestBody @Valid RegisterRequest registerRequest) {
+            AuthenticationResponse registerResponse = authenticationService.register(registerRequest);
             return ResponseEntity.ok(registerResponse);
-
-        } catch (RuntimeException e) {
-            return ResponseEntity.badRequest().build();
-        }
     }
 
     @PostMapping("/login")
-    public ResponseEntity<AuthenticationResponse> login(@RequestBody @Validated LoginRequest loginRequest) {
-        try {
-            System.out.println("Login attempt for: " + loginRequest.getUsername());
-            var loginResponse = authenticationService.login(loginRequest);
+    public ResponseEntity<AuthenticationResponse> login(@RequestBody @Valid LoginRequest loginRequest) {
+            AuthenticationResponse loginResponse = authenticationService.login(loginRequest);
             return ResponseEntity.ok(loginResponse);
-        } catch (RuntimeException e) {
-            System.out.println("LOGIN ERROR: " + e.getMessage());
-            e.printStackTrace();
-            return ResponseEntity.badRequest().build();
-        }
     }
 }
 

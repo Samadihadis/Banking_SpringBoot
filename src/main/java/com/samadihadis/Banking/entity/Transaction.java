@@ -29,7 +29,8 @@ public class Transaction {
     @JoinColumn(name = "destination_account_id")
     private Account destinationAccount;
 
-    private BigDecimal transactionAmount;
+    @Column(nullable = false, precision = 19, scale = 2)
+    private BigDecimal transactionAmount = BigDecimal.ZERO;
 
     private LocalDateTime transactionDate;
 

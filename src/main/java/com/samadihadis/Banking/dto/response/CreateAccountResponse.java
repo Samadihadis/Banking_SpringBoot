@@ -5,6 +5,8 @@ import com.samadihadis.Banking.enums.AccountStatus;
 import lombok.Builder;
 import lombok.Data;
 
+import java.math.BigDecimal;
+
 @Data
 @Builder
 public class CreateAccountResponse {
@@ -12,7 +14,7 @@ public class CreateAccountResponse {
     private String accountNumber;
     private String shebaNumber;
     private AccountStatus status;
-    private Double balance;
+    private BigDecimal balance;
     private Long customerId;
     private Long bankId;
 }

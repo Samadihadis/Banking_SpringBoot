@@ -19,9 +19,9 @@ public class CustomerService {
         return customerRepository.save(customer);
     }
 
-    public Customer getCustomerById(Long id){
-        Optional<Customer> customer = customerRepository.findById(id);
-        return customer.orElse(null);
+    public Customer getCustomerById(Long id) {
+        return customerRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Customer not found"));
     }
 
     public List<Customer> getAllCustomers(){
@@ -30,6 +30,28 @@ public class CustomerService {
 
     public void deleteCustomer(Long id) {
         customerRepository.deleteById(id);
+    }
+
+    public Customer getCustomerByNationalId(String nationalId) {
+        return customerRepository.findByNationalId(nationalId)
+                .orElseThrow(() -> new RuntimeException("Customer not found"));
+    }
+
+    public Customer updateCustomer(Long id, Customer customerDetails) {
+
+        Customer customer = customerRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Customer not found"));
+
+        customer.setCustomerFullName(customerDetails.getCustomerFullName());
+        customer.setNationalId(customerDetails.getNationalId());
+        customer.setCustomerCode(customerDetails.getCustomerCode());
+
+        return customerRepository.save(customer);
+    }
+
+    public Customer getCustomerByCode(String customerCode) {
+        return customerRepository.findByCustomerCode(customerCode)
+                .orElseThrow(() -> new RuntimeException("Customer not found"));
     }
 
 }

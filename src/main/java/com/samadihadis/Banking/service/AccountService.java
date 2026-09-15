@@ -16,7 +16,6 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -52,32 +51,25 @@ public class AccountService {
 
 
     public Account getAccountById(Long id) {
-        Optional<Account> account = accountRepository.findById(id);
-        return account.orElse(null);
-    }
-
-    public Account getAccountByIdWithNotFoundDetection(Long id) {
-        Optional<Account> account = accountRepository.findById(id);
-        return account.orElse(null);
+        return accountRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Account not found"));
     }
 
     public Account getAccountByAccountNumber(String accountNumber) {
-        Optional<Account> account = accountRepository.findByAccountNumber(accountNumber);
-        return account.orElse(null);
+        return accountRepository.findByAccountNumber(accountNumber)
+                .orElseThrow(() -> new RuntimeException("Account not found"));
     }
 
     @Transactional
     public Account updateBalance(Long accountId, BigDecimal newBalance) {
         Account account = getAccountById(accountId);
-        if (account != null) {
-            if (newBalance >= 0) {
+
+            if (newBalance.compareTo(BigDecimal.ZERO) >= 0) {
                 account.setBalance(newBalance);
                 return accountRepository.save(account);
             } else {
                 throw new RuntimeException("Balance cannot be negative");
             }
-        }
-        throw new RuntimeException("Account not found");
     }
 
     @Transactional
@@ -97,5 +89,18 @@ public class AccountService {
     public void deleteAccount(Long id) {
         accountRepository.deleteById(id);
     }
+
+    public List<Account> getAccountByCustomerId(Long customerId){
+        return accountRepository.findByCustomerId(customerId);
+    }
+
+    public List<Account> getAccountByBankId(Long bankId){
+        return accountRepository.findByBankId(bankId);
+    }
+
+    public List<Account> getAccountByStatus(AccountStatus accountStatus){
+        return accountRepository.findByAccountStatus(accountStatus);
+    }
+
 }
 

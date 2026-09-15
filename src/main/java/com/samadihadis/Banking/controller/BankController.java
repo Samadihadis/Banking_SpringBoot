@@ -17,21 +17,13 @@ public class BankController {
 
     @PostMapping
     public ResponseEntity<Bank> createBank(@RequestBody Bank bank) {
-        try {
             Bank createdBank = bankService.createBank(bank);
             return ResponseEntity.ok(createdBank);
-        } catch (RuntimeException e) {
-            return ResponseEntity.badRequest().build();
-        }
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<Bank> getBank(@PathVariable Long id) {
-        Bank bank = bankService.getBankById(id);
-        if (bank != null) {
-            return ResponseEntity.ok(bank);
-        }
-        return ResponseEntity.notFound().build();
+        return ResponseEntity.ok(bankService.getBankById(id));
     }
 
     @GetMapping

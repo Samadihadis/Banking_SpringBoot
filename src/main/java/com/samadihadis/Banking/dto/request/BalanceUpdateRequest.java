@@ -3,8 +3,10 @@ package com.samadihadis.Banking.dto.request;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.math.BigDecimal;
+
 @Setter
 @Getter
 public class BalanceUpdateRequest {
-    private Double newBalance;
+    private BigDecimal newBalance;
 }

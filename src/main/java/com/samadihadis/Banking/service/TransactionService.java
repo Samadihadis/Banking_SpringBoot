@@ -10,7 +10,10 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -29,9 +32,9 @@ public class TransactionService {
 
 
     @Transactional
-    public Transaction transfer(Long sourceAccountId, Long destinationAccountId, Double amount, String description) {
+    public Transaction transfer(Long sourceAccountId, Long destinationAccountId, BigDecimal amount, String description) {
 
-        if (amount == null || amount <= 0) {
+        if (amount == null || amount.compareTo(BigDecimal.ZERO) <= 0){
             throw new RuntimeException("مبلغ انتقال باید مثبت باشد");
         }
 
@@ -45,7 +48,7 @@ public class TransactionService {
         transaction.setSourceAccount(sourceAccount);
         transaction.setDestinationAccount(destinationAccount);
         transaction.setTransactionAmount(amount);
-        transaction.setTransactionDate(LocalDate.now());
+        transaction.setTransactionDate(LocalDateTime.now());
         transaction.setTransactionStatus(TransactionStatus.PENDING);
         transaction.setTransactionDescription(description);
 
@@ -56,50 +59,56 @@ public class TransactionService {
         return transaction;
     }
 
-    public Transaction deposit(Long accountId, Double amount, String description) {
+    @Transactional
+    public Transaction deposit(Long accountId, BigDecimal amount, String description) {
 
         Account destinationAccount = accountRepository.findById(accountId)
                 .orElseThrow(() -> new RuntimeException("حساب مقصد یافت نشد"));
 
-        if (amount <= 0) {
-            throw new RuntimeException("مبلغ واریز باید مثبت باشد");
+        if (amount == null || amount.compareTo(BigDecimal.ZERO) <= 0) {
+            throw new RuntimeException("مبلغ برداشت باید مثبت باشد");
         }
 
-        destinationAccount.setBalance(destinationAccount.getBalance() + amount);
+        destinationAccount.setBalance(
+                destinationAccount.getBalance().add(amount)
+        );
         accountRepository.save(destinationAccount);
 
         Transaction transaction = new Transaction();
         transaction.setSourceAccount(null);
         transaction.setDestinationAccount(destinationAccount);
         transaction.setTransactionAmount(amount);
-        transaction.setTransactionDate(LocalDate.now());
+        transaction.setTransactionDate(LocalDateTime.now());
         transaction.setTransactionStatus(TransactionStatus.SUCCESS);
         transaction.setTransactionDescription(description);
 
         return transactionRepository.save(transaction);
     }
 
-    public Transaction withdraw(Long accountId, Double amount, String description) {
+    @Transactional
+    public Transaction withdraw(Long accountId, BigDecimal amount, String description) {
 
         Account sourceAccount = accountRepository.findById(accountId)
                 .orElseThrow(() -> new RuntimeException("حساب مبدا یافت نشد"));
 
-        if (amount <= 0) {
+        if (amount == null || amount.compareTo(BigDecimal.ZERO) <= 0) {
             throw new RuntimeException("مبلغ برداشت باید مثبت باشد");
         }
 
-        if (sourceAccount.getBalance() < amount) {
+        if (sourceAccount.getBalance().compareTo(amount) < 0) {
             throw new RuntimeException("موجودی کافی نیست");
         }
 
-        sourceAccount.setBalance(sourceAccount.getBalance() - amount);
+        sourceAccount.setBalance(
+                sourceAccount.getBalance().subtract(amount)
+        );
         accountRepository.save(sourceAccount);
 
         Transaction transaction = new Transaction();
         transaction.setSourceAccount(sourceAccount);
         transaction.setDestinationAccount(null);
         transaction.setTransactionAmount(amount);
-        transaction.setTransactionDate(LocalDate.now());
+        transaction.setTransactionDate(LocalDateTime.now());
         transaction.setTransactionStatus(TransactionStatus.SUCCESS);
         transaction.setTransactionDescription(description);
 
@@ -118,4 +127,13 @@ public class TransactionService {
     public void deleteTransaction(Long id) {
         transactionRepository.deleteById(id);
     }
+
+    public List<Transaction> getTransactionsByAccount(Long accountId) {
+        return transactionRepository.findAllByAccountId(accountId);
+    }
+
+    public List<Transaction> getTransactionsByStatus(TransactionStatus status) {
+        return transactionRepository.findByTransactionStatus(status);
+    }
+
 }

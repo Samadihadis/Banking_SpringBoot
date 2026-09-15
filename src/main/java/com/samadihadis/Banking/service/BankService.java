@@ -19,11 +19,16 @@ public class BankService {
     }
 
     public Bank getBankById(Long id) {
-        Optional<Bank> bank = bankRepository.findById(id);
-        return bank.orElse(null);
+        return bankRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Bank not found"));
     }
 
     public List<Bank> getAllBanks() {
         return bankRepository.findAll();
+    }
+
+    public Bank getBankByName(String bankName) {
+        return bankRepository.findByBankName(bankName)
+                .orElseThrow(() -> new RuntimeException("Bank not found"));
     }
 }

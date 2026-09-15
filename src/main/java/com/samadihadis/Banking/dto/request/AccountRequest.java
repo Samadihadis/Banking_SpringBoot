@@ -8,6 +8,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
+
 @Data
 @Builder
 @AllArgsConstructor
@@ -17,7 +19,7 @@ public class AccountRequest {
     @Min(value = 10, message = "طول شماره حساب حداقل باید 10 رقم باشد")
     private String accountNumber;
     private String shebaNumber;
-    private Double balance;
+    private BigDecimal balance;
     private Long customerId;
     private Long bankId;
     private AccountStatus status;
